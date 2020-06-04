@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+    <h1>Task Manager</h1>
+    <hr>
+
+    <form action="/create-task" method="post">
+        <div id="description">
+            <label class = "tasklab"  for="task">DESCRIPTION</label>
+            <br>
+            <textarea required name="task" id="task"  rows="3" placeholder="what do you need to do"></textarea>
+        </div>
+        <hr>
+        <div id="catdate">
+            <div>
+                <label class="tasklab" for="category">CHOOSE CATEGORY</label>
+                <br>
+                <select required name="category" id="select">
+                    <option value="Personall">Personal</option>
+                    <option value="Work">Work</option>
+                    <option value="School">School</option>
+                    <option value="Cleaning">Cleaning</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+            <div>
+                <label class="tasklab" for="dueDate">DUE DATE</label>
+                <input required type="date" name="duedate" id="duedate">
+            </div>
+        </div>
+        <hr>
+        
+        <div class="wrapper">
+            <button type="submit" class="submit"><i class="fas fa-plus"></i> Add Task</button>
+        </div>
+    </form>
+    
+
+    <% for(let i of tasks ){ %>
+        <hr>
+
+        <div id="tasklist">
+            <div id="mainblock">
+                <p id="showed-task"><%= i.task %></p>
+                <p><%= i.duedate %></p>
+            </div>
+            <div><button class="submit" id="<%= i.category %>"><%= i.category %></button></div>
+            <a href="/delete-task/<%= i._id %>">
+                <div>
+                    <button class="delete">
+                        <i class="fas fa-trash"></i> Delete Task
+                    </button>
+                </div>
+            </a>
+        </div>
+    <% } %>
+    
+
+
+    <footer><hr>No Rights reserved @Harsh Agarwal | You are free to take advantage of this Project</footer>
+</body>
+</html>

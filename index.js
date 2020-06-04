@@ -1,9 +1,17 @@
 const express = require('express');
 const app = express();
-const port = 8000;
+const port = 7000;
+
+const db = require('./config/mongoose')
+
+const Task = require('./models/tasks');
 
 app.set('views','views');
 app.set('view engine','ejs');
+app.use(express.urlencoded());
+app.use(express.static('assets'));
+
+app.use('/',require('./routes/index'))
 
 app.listen(port,(err)=>{
     if(err){
